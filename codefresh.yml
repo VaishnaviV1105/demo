@@ -11,7 +11,7 @@ steps:
   clone:
     title: "Cloning repository"
     type: "git-clone"
-    repo: "VaishnaviV1105/pipelinerepo"
+    repo: "VaishnaviV1105/demo"
     # CF_BRANCH value is auto set when pipeline is triggered
     # Learn more at codefresh.io/docs/docs/codefresh-yaml/variables/
     revision: "${{CF_BRANCH}}"
@@ -29,7 +29,7 @@ steps:
   plan:
     title: Terraform Plan
     type: freestyle
-    working_directory: './pipelinerepo'
+    working_directory: './demo'
     arguments:
       image: 'hashicorp/terraform'
       commands:
@@ -46,7 +46,7 @@ steps:
   deploy:
     title: Terraform Apply
     type: freestyle
-    working_directory: './pipelinerepo'
+    working_directory: './demo'
     arguments:
       image: 'hashicorp/terraform'
       commands:
