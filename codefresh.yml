@@ -1,0 +1,27 @@
+version: '1.0'
+stages:
+  - checkout
+  - prepare   
+  - deploy
+steps:
+  main_clone:
+    title: Cloning main repository...
+    stage: checkout
+    type: git-clone
+    repo: 'VaishnaviV1105/cicdrepo'
+    revision: main
+    git: github      
+  SetupAuth:
+    image: alpine:3.9
+    title: Setting up AWS cloud auth
+    stage: prepare
+    commands:
+      - cf_export AWS_ACCESS_KEY_ID=${{ACCESS_KEY}}
+      - cf_export AWS_SECRET_ACCESS_KEY=${{SECRET_KEY}}
+  DeployWithTerraform:
+    image: hashicorp/terraform:0.13.1
+    title: Deploying Terraform plan
+    stage: deploy
+    commands:
+      - terraform init
+      - terraform plan
