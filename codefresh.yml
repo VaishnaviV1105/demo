@@ -37,7 +37,7 @@ steps:
         - terraform plan
     stage: plan
 
-   deploy:
+  deploy:
     title: Terraform Apply
     type: freestyle
     working_directory: './demo'
